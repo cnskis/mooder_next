@@ -202,12 +202,12 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     ]
 
     def get_context_data(self, **kwargs):
-        kwargs['gift'] = get_object_or_404(models.Gift, show=True, pk=self.kwargs['gift_id'])
+        kwargs['gift'] = get_object_or_404(models.Gift, show=True, pk=self.kwargs['pk'])
         return super(OrderCreateView, self).get_context_data(**kwargs)
 
     @transaction.atomic
     def form_valid(self, form):
-        gift = get_object_or_404(models.Gift, show=True, pk=self.kwargs['gift_id'])
+        gift = get_object_or_404(models.Gift, show=True, pk=self.kwargs['pk'])
         return_url = reverse('archive:gift', kwargs=dict(pk=gift.id))
 
         if gift.amount <= 0:
