@@ -1,0 +1,55 @@
+{% extends 'management/base.html' %}
+{% load admin_helper %}
+
+{% block subject %}评论列表{% endblock %}
+
+{% block body %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>评论时间</th>
+            <th>评论者</th>
+            <th>昵称</th>
+            <th>文章ID</th>
+            <th>正文</th>
+            <th>动作</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for comment in object_list %}
+        <tr>
+            <td>{{ comment.created_time | date:"Y-m-d H:i:s" }}</td>
+            <td>{{ comment.author }}</td>
+            <td>{{ comment.author.nickname }}</td>
+            <td><a href="/post/{{ comment.post.id }}" target="_blank" >{{ comment.post.title }}</a></td>
+            <td>{{ comment.content }}</td>
+            <td>
+                <a href="javascript:submit('{% url 'management-comment-delete' pk=comment.id %}');" class="btn btn-danger btn-xs confirm-alert" role="button">删除</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script>
+function submit(action_url) {
+    let f = $('<form method="post"></form>');
+    const xsrf = $(`{% csrf_token %}`);
+    f.append(xsrf);
+    f.prop('action', action_url);
+    f.appendTo('body').submit();
+}
+window.onload = function () {
+    $(".confirm-alert").on('click', function (e) {
+        if(!confirm('确认要执行这个操作？')) {
+            return e.preventDefault();
+        }
+    });
+    $("form.form-confirm").on("submit", function (e) {
+        if(!confirm('确认要执行这个操作？')) {
+            return e.preventDefault();
+        }
+    });
+};
+</script>
+    {% include 'management/_pagination.html' %}
+{% endblock %}

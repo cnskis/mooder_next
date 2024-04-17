@@ -453,3 +453,12 @@ class DeleteCommentView(AdminPermissionMixin, DeleteView):
 
     def get_success_url(self):
         return self.request.META.get('HTTP_REFERER')
+
+class ListCommentView(AdminPermissionMixin, PaginationMixin, ListView):
+    model = Comment
+    # 时间倒序返回
+    queryset = Comment.objects.all().order_by("-created_time")
+    template_name = 'management/comment_list.html'
+    paginate_by = 10
+
+    permission_required = 'accounts.change_comment'
