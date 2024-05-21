@@ -1,14 +1,14 @@
 -i https://pypi.tuna.tsinghua.edu.cn/simple
-django
-markdown
-django-markup
-django-pure-pagination
-django-simple-captcha
-django-bootstrap3
-django-registration-redux
-django-anymail[mailgun]
-pytz
-psycopg2-binary
-python-dotenv
-gunicorn
-gevent
+Django==3.2.13
+Markdown==3.3.7
+django-markup==1.5
+django-pure-pagination==0.3.0
+django-simple-captcha==0.5.17
+django-bootstrap3==21.2
+django-registration-redux==2.11
+django-anymail[mailgun]==8.6
+pytz==2022.1
+psycopg2-binary==2.9.3
+python-dotenv==0.20.0
+gunicorn==20.1.0
+gevent==21.12.0
