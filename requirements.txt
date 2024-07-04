@@ -7,6 +7,7 @@ django-simple-captcha==0.5.17
 django-bootstrap3==21.2
 django-registration-redux==2.11
 django-anymail[mailgun]==8.6
+pillow==9.4.0
 pytz==2022.1
 psycopg2-binary==2.9.3
 python-dotenv==0.20.0
