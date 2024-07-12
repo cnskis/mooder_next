@@ -26,3 +26,8 @@ Mooder_next是从Mooder二次开发而来的产物。
 ## 开源协议
 
 使用Mooder、Mooder_next请遵守LGPL协议。
+
+## 案例
+
+![image](https://github.com/user-attachments/assets/9ab880e6-93fe-4c63-8b71-7ffda831bc48)
+[https://wiki.shikangsi.com](https://wiki.shikangsi.com)
