@@ -1,0 +1,18 @@
+{% load template_helper %}
+
+<table class="am-table minos-list am-text-sm am-table-bordered am-table-hover am-scrollable-horizontal">
+  <tr class="null am-primary">
+    <td width="10%" class="am-text-center am-hide-sm-down">时间</td>
+    <td>标题</td>
+    <td width="12%" class="am-text-center">作者</td>
+  </tr>
+  {% for announcement in announcement_list %}
+  <tr class="row">
+    <td class="am-text-center am-link-muted am-hide-sm-down">{{ announcement.created_time | date:'Y-m-d' }}</td>
+    <td>
+        <a href="{{ announcement.id }}" >{{ announcement.title }}</a>
+    </td>
+    <td class="am-text-center"><a href="{{ announcement.author.get_absolute_url }}">{{ announcement.author.nickname | truncatechars:13 }}</a></td>
+  </tr>
+  {% endfor %}
+</table>
