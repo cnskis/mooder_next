@@ -19,7 +19,7 @@ from urllib.parse import urlparse
 from accounts import forms as accounts_form
 from . import models
 from . import forms
-from managements.models import CoinLog
+from managements.models import CoinLog, Announcement
 
 User = get_user_model()
 
@@ -304,3 +304,18 @@ class JavascriptView(LoginRequiredMixin, TemplateView):
             return self.handle_no_permission()
 
         return super(JavascriptView, self).dispatch(request, *args, **kwargs)
+
+
+class AnnouncementsListView(PaginationMixin, ListView):
+    template_name = 'archive/announcements_list.html'
+    name = 'archive:announcements-list'
+    model = Announcement
+    paginate_by = 20
+    queryset = Announcement.objects.all().order_by("-created_time")
+
+
+class AnnouncementsDetailView(PaginationMixin, DetailView):
+    template_name = "archive/announcements-detail.html"
+    model = Announcement
+    # def get_queryset(self):
+    #     return models.Post.posts.all()
