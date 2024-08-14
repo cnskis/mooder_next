@@ -1,0 +1,35 @@
+{% extends 'management/base.html' %}
+{% load admin_helper %}
+
+{% block subject %}公告列表{% endblock %}
+
+{% block body %}
+<a href="{% url 'management-announcements-add' %}" class="btn btn-primary btn-sm">增加</a>
+<hr>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>标题</th>
+            <th>作者</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
+            <th>动作</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for object in object_list %}
+        <tr>
+            <td><a href="{% url 'announcements-detail' pk=object.id %}" target="_blank">{{ object.title }}</a></td>
+            <td><a href="{% url 'management-user-detail' pk=object.author.id %}" class="link-muted">{{ object.author.nickname }}</a></td>
+            <td>{{ object.created_time | date:'Y-m-d H:i' }}</td>
+            <td>{{ object.last_modify_time | date:'Y-m-d H:i' }}</td>
+            <td>
+                <a href="{% url 'management-announcements-edit' pk=object.id %}" class="btn btn-primary btn-xs" role="button">编辑</a>
+                <a href="javascript:submit('{% url 'management-announcements-delete' pk=object.id %}')" class="btn btn-danger btn-xs confirm-alert" role="button">删除</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    {% include 'management/_pagination.html' %}
+{% endblock %}
