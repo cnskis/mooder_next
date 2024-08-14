@@ -21,6 +21,7 @@ from django.contrib.sessions.models import Session
 from accounts.models import USER_LEVEL
 from archives.models import LEVEL_STATUS_CHOICES
 from .forms import PostForm
+from managements.models import Announcement
 
 User = get_user_model()
 
@@ -462,3 +463,52 @@ class ListCommentView(AdminPermissionMixin, PaginationMixin, ListView):
     paginate_by = 10
 
     permission_required = 'accounts.change_comment'
+
+
+
+class AnnouncementsListView(AdminPermissionMixin, PaginationMixin, ListView):
+    model = Announcement
+    template_name = 'management/announcement_list.html'
+    paginate_by = 15
+    permission_required = 'announcements.change_announcement'
+    queryset = Announcement.objects.all().order_by("-created_time")
+
+
+class AnnouncementsEditView(AdminPermissionMixin, UpdateView):
+    model = Announcement
+    template_name = 'management/announcement_edit.html'
+    success_url = reverse_lazy('management-announcements-list')
+    fields = [
+        'title',
+        'content'
+    ]
+    permission_required = 'announcements.change_announcement'
+
+
+class AnnouncementsDeleteView(AdminPermissionMixin, DeleteView):
+    model = Announcement
+    success_url = reverse_lazy('management-announcements-list')
+    permission_required = 'announcements.delete_announcement'
+
+    get = DeleteView.http_method_not_allowed
+
+
+class AnnouncementsAddView(AdminPermissionMixin, CreateView):
+    model = Announcement
+    template_name = 'management/announcement_edit.html'
+    success_url = reverse_lazy('management-announcements-list')
+    fields = [
+        'title',
+        'content'
+    ]
+    permission_required = 'announcements.add_announcement'
+
+    @transaction.atomic
+    def form_valid(self, form):
+
+        self.object = form.save(commit=False)
+        self.object.author_id=self.request.user.id
+        self.object.save()
+
+        return HttpResponseRedirect(self.get_success_url())
+
