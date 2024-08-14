@@ -14,6 +14,8 @@ Mooder_next是从Mooder二次开发而来的产物。
 
 
 ## Change Log
+- 2024-08-14
+  - 新增公告系统，升级方法，首先拉取代码，然后更新数据库：1、`python manage.py makemigrations`2、`python manage.py migrate`
 - 2024-07-04
   - 新增pillow依赖，解决验证码无法生成问题（根据本地开发环境补全）
 - 2024-05-21
