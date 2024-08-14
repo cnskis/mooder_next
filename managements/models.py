@@ -25,4 +25,19 @@ class CoinLog(models.Model):
 
 def log_coin(coin, rest, fromuser, touser, message=None):
     log = CoinLog(coin=coin, rest=rest, user=touser, admin=fromuser, message=message)
-    log.save()
+
+
+class Announcement(models.Model):
+    title = models.CharField('标题', max_length=256)
+    content = models.TextField('内容')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='作者', on_delete=models.CASCADE)
+
+    created_time = models.DateTimeField('创建时间', auto_now_add=True)
+    last_modify_time = models.DateTimeField('修改时间', auto_now=True)
+
+    objects = models.Manager()
+
+    class Meta:
+        ordering = ['created_time']
+        verbose_name = '公告'
+        verbose_name_plural = verbose_name

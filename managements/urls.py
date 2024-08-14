@@ -36,4 +36,10 @@ urlpatterns = [
 
     path('comment/delete/<int:pk>/', views.DeleteCommentView.as_view(), name='management-comment-delete'),
     path('comment/list/', views.ListCommentView.as_view(), name='management-comment-list'),
+    
+    path('announcements/', views.AnnouncementsListView.as_view(), name='management-announcements-list'),
+    path('announcements/<int:pk>/', views.AnnouncementsEditView.as_view(), name='management-announcements-edit'),
+    path('announcements/<int:pk>/delete/', views.AnnouncementsDeleteView.as_view(), name='management-announcements-delete'),
+    path('announcements/add/', views.AnnouncementsAddView.as_view(), name='management-announcements-add'),
 ]
+

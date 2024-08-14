@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load markup_tags %}
+{% load html_purifier %}
+{% load template_helper %}
+{% load permission %}
+
+{% block title %}{{ announcement.title }}{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/code.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="am-container">
+<div class="am-g">
+  <div class="am-u-sm-centered am-u-sm-11">
+      <article class="am-article">
+          <div class="am-article-hd">
+            <h1 class="am-article-title">{{ announcement.title }}</h1>
+          </div>
+          <div class="am-article-bd" id="md-view">
+              <hr>
+            {{announcement.content|apply_markup:"markdown"}}
+          </div>
+      </article>
+      <hr>
+  </div>
+
+<div class="main-footer" style="margin:10px auto;text-align:center;">
+    2014-2024 © 联系邮箱：<a href="mailto:admin@sg95.cn">admin@sg95.cn</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://beian.miit.gov.cn">鄂ICP备15020128号-4</a><br>
+</div>
+
+</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<script type="text/javascript">
+function escape(txt) {
+    return txt && txt.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+</script>
+{% endblock %}
