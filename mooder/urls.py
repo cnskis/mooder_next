@@ -25,6 +25,9 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
 
     path('management/', include('managements.urls')),
+    
+    path('announcements/', AnnouncementsListView.as_view(), name='announcements-list'),
+    path('announcements/<int:pk>/', AnnouncementsDetailView.as_view(), name='announcements-detail'),
 ]
 
 if settings.DEBUG:
