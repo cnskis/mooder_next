@@ -14,6 +14,8 @@ Mooder_next是从Mooder二次开发而来的产物。
 
 
 ## Change Log
+- 2024-09-06
+  - 新增前台搜索功能
 - 2024-08-14
   - 新增公告系统，升级方法，首先拉取代码，然后更新数据库：1、`python manage.py makemigrations`2、`python manage.py migrate`
 - 2024-07-04
