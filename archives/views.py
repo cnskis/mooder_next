@@ -319,3 +319,32 @@ class AnnouncementsDetailView(PaginationMixin, DetailView):
     model = Announcement
     # def get_queryset(self):
     #     return models.Post.posts.all()
+
+# 搜索
+class PostListView(PaginationMixin, ListView):
+    template_name = 'archive/search.html'
+    paginate_by = 15
+    permission_required = 'archives.change_post'
+    # queryset = Post.posts.all()
+    queryset = models.Post.posts.filter(verify='pass')
+
+    # 只要已通过的
+    # models.Post.posts.filter(verify='pass')
+
+    def get_queryset(self, **kwargs):
+        query = self.queryset
+        # keyword = self.request.GET.get('keyword')
+        keyword = self.kwargs['pk']
+        # print(keyword)
+        if keyword:
+            query = query.filter(title__icontains=keyword)
+
+        return query
+
+
+class SearchIndexView(TemplateView):
+    template_name = 'archive/searchindex.html'
+
+    def get_context_data(self, **kwargs):
+        return super(SearchIndexView, self).get_context_data(**kwargs)
+

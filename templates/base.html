@@ -53,6 +53,7 @@
       <li {% if view.name == 'archive:list' %}class="am-active"{% endif %}><a href="{% url 'archive:list' %}">贡献列表</a></li>
       <li {% if view.name == 'archive:user' %}class="am-active"{% endif %}><a href="{% url 'archive:user' %}">排行榜</a></li>
       <li {% if view.name == 'archive:shop' %}class="am-active"{% endif %}><a href="{% url 'archive:shop' %}">礼品中心</a></li>
+	  <li {% if view.name == 'archive:search' %}class="am-active"{% endif %}><a href="{% url 'archive:search' %}">搜索</a></li>
       <li {% if view.name == 'announcements-list' %}class="am-active"{% endif %}><a href="{% url 'announcements-list' %}">公告</a></li>
       <li class="am-dropdown" data-am-dropdown>
         <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">

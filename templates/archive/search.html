@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load template_helper %}
+
+{% block title %}主页{% endblock %}
+
+{% block body %}
+
+<div class="am-container">
+<div class="am-g">
+  <div class="am-u-sm-centered am-u-sm-11">
+  <h2>搜索结果</h2>
+      <hr>
+<table class="am-table minos-list am-text-sm am-table-bordered am-table-hover am-scrollable-horizontal">
+      <tr class="null am-primary">
+        <td width="10%" class="am-text-center am-hide-sm-down">时间</td>
+        <td>标题</td>
+        <td width="8%" class="am-text-center am-hide-sm-down">可见性</td>
+        <td width="8%" class="am-text-center am-hide-sm-down">等级</td>
+        <td width="12%" class="am-text-center">作者</td>
+      </tr>
+    <tbody>
+    {% for post in post_list %}
+        <tr>
+            <td>{{ post.created_time | date:'Y-m-d' }}</td>
+            <td><a class="link-muted" href="{{ post.get_absolute_url }}" target="_blank">{{ post.title }}</a></td>
+            <td class="am-text-center am-hide-sm-down">{{ post.get_visible_display | visible_tag }}</td>
+            <td class="am-text-center am-hide-sm-down">{{ post.get_level_display | post_tag }}</td>
+            <td><a href="{{ post.author.get_absolute_url }}" class="link-muted" target="_blank">{{ post.author.nickname }}</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+    <form action="" method="post">
+        <input type="hidden" name="">
+    </form>
+	{% include 'archive/_pagination.html' %}
+	
+  </div>
+</div>
+</div>
+
+{% endblock %}

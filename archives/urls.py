@@ -26,5 +26,8 @@ urlpatterns = [
     path('gift/<int:pk>/buy/', views.OrderCreateView.as_view(), name='order-create'),
     path('gift/order/<int:pk>/', views.OrderDetailView.as_view(), name='order'),
 
+    path('search/', views.SearchIndexView.as_view(), name='search'),
+    path('search/<str:pk>', views.PostListView.as_view(), name='search-list'),
+
     path('js/', view=views.JavascriptView.as_view(content_type='text/javascript'), name='js'),
 ]
