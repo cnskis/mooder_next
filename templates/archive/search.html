@@ -14,7 +14,6 @@
       <tr class="null am-primary">
         <td width="10%" class="am-text-center am-hide-sm-down">时间</td>
         <td>标题</td>
-        <td width="8%" class="am-text-center am-hide-sm-down">可见性</td>
         <td width="8%" class="am-text-center am-hide-sm-down">等级</td>
         <td width="12%" class="am-text-center">作者</td>
       </tr>
@@ -23,7 +22,6 @@
         <tr>
             <td>{{ post.created_time | date:'Y-m-d' }}</td>
             <td><a class="link-muted" href="{{ post.get_absolute_url }}" target="_blank">{{ post.title }}</a></td>
-            <td class="am-text-center am-hide-sm-down">{{ post.get_visible_display | visible_tag }}</td>
             <td class="am-text-center am-hide-sm-down">{{ post.get_level_display | post_tag }}</td>
             <td><a href="{{ post.author.get_absolute_url }}" class="link-muted" target="_blank">{{ post.author.nickname }}</a></td>
         </tr>
