@@ -102,6 +102,18 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/amazeui/amazeui@2.7.2/dist/js/amazeui.min.js"></script>
 <script type="text/javascript" src="{% url 'archive:js' %}"></script>
+<script>
+$("#searchBtn").click(function(){
+var url=window.location.origin+'/search/'+$("#keyword").val();
+console.log(url);
+window.location.href=url;
+});
+$("#ipwhois").click(function(){
+var url=window.location.origin+'/ip/'+$("#ip").val();
+console.log(url);
+window.location.href=url;
+});
+</script>
 {% block footer %}{% endblock %}
 </body>
 </html>
