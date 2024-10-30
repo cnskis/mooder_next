@@ -1,0 +1,24 @@
+services:
+ web-aio:
+   build:
+    context: .
+    dockerfile: Dockerfile_aio
+   ports:
+    - "8000:80"
+   depends_on:
+    - db-aio
+   env_file:
+    - .env
+   volumes:
+    - file-data-aio:/data
+ db-aio:
+   image: postgres:13-alpine
+   environment:
+    - POSTGRES_PASSWORD=postgres
+   volumes:
+    - db-data-aio:/var/lib/postgresql/data
+volumes:
+  file-data-aio:
+    driver: local
+  db-data-aio:
+    driver: local
