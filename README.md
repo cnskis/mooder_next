@@ -8,6 +8,18 @@ Mooder_next是从Mooder二次开发而来的产物。
 
 由于原作者未响应合并请求（大概已经放弃了这个历史项目），现开启新分支进行后续开发，新分支更名为：Mooder_next。
 
+## How to run
+
+### 使用 all in one docker 镜像
+
+1. 基于默认文件修改配置文件
+
+    ```bash
+    cp .env.default_aio .env
+    ```
+
+2. `docker-compose -f docker-compose_aio.yml up -d`
+
 ## 站在巨人的肩膀上
 
 感谢原作者开发、开源这么优秀的项目，Mooder_next会添加更多功能，使得更加便于使用。
