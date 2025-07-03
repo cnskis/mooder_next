@@ -1,21 +1,33 @@
 <nav class="pull-right">
 <ul class="pagination pagination-sm">
   {% if page_obj.has_previous %}
+    {% if keyword %}
+      <li><a href="?page={{ page_obj.previous_page_number }}&keyword={{ keyword }}">&laquo;</a></li>
+    {% else %}
       <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% endif %}
   {% else %}
       <li class="disabled"><span>&laquo;</span></li>
   {% endif %}
 
   {% for page in page_obj.pages %}
     {% if page %}
-    <li {% if page_obj.number == page %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+     {% if keyword %}
+      <li {% if page_obj.number == page %}class="active"{% endif %}><a href="?page={{ page }}&keyword={{ keyword }}">{{ page }}</a></li>
+     {% else %}
+      <li {% if page_obj.number == page %}class="active"{% endif %}><a href="?page={{ page }}">{{ page }}</a></li>
+     {% endif %}
     {% else %}
     <li class="disabled"><span>...</span></li>
     {% endif %}
   {% endfor %}
 
   {% if page_obj.has_next %}
+    {% if keyword %}
+      <li><a href="?page={{ page_obj.next_page_number }}&keyword={{ keyword }}">&raquo;</a></li>
+    {% else %}
       <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% endif %}
   {% else %}
       <li class="disabled"><span>&raquo;</span></li>
   {% endif %}
