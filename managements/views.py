@@ -144,6 +144,10 @@ class PostListView(AdminPermissionMixin, PaginationMixin, ListView):
 
         return query
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['keyword'] = self.request.GET.get('keyword', '')
+        return context
 
 class VerifyPostListView(PostListView):
     queryset = Post.posts.filter(verify='wait')
